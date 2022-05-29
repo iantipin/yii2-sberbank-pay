@@ -46,7 +46,11 @@ class DefaultController extends Controller
                 $callback = $this->module->successCallback;
                 $callback($model);
             }
-            $this->redirect($this->module->successUrl);
+
+	    $this->redirect([
+                $this->module->successUrl,
+                'id' => $model->order_id
+            ]);
         } else {
             if ($this->module->failCallback) {
                 $callback = $this->module->failCallback;
